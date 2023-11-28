@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("OnCollision!");
-        Destroy(this.gameObject);
+        // Return the enemy to the pool using Unity's ObjectPool
+        FindObjectOfType<EnemySpawner>().ReturnEnemy(this);
     }
 }

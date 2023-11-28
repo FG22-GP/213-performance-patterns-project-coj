@@ -7,8 +7,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private float _totalTime;
+    private Castle _castle;
     void Start()
     {
+        _castle = FindObjectOfType<Castle>();
         FakeInitializeProjectile();
     }
 
@@ -37,6 +39,11 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("On Collision!");
-        Destroy(this.gameObject);
+        ReturnToPool();
+    }
+
+    void ReturnToPool()
+    {
+        _castle.ReturnProjectile(gameObject);
     }
 }
